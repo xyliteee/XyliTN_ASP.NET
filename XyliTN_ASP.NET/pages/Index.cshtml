@@ -1,0 +1,30 @@
+﻿@page
+@model XyliTN_ASP.NET.pages.IndexModel
+@{
+}
+<head>
+    <link rel="stylesheet" href="~/css/StyleSheet.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+</head>
+<script src="~/js/Animation.js"></script>
+<script src="~/js/func.js"></script>
+<title>戊五醇的首页</title>
+<body style="overflow: hidden;">
+    <div style="position: relative;">
+        <div class="background-mask"></div>
+        <img id="bgImage" src="~/images/back.jpg" onclick="return false" class="background-image"></>
+        <button id="searchButton" class="SearchButton" onclick="SearchClick()">搜索</button>
+        <div style="position: relative;">
+            <input id="inputBox" type="text" placeholder="ヾ(≧▽≦*)o" class="MainInputBoxStyle" onfocus="ZoomIn()" onblur="ZoomOut()">
+            <button id="engineButton" class="engineButton" onclick="ChoseEngine()"></button>
+            <button id="bilibiliButton" class="webButton" data-tag="bilibili" style="top:400px;left:calc(50% - 200px);" onclick="JumpToWeb(this)" >哔哩</button>
+            <button id="githubButton" class="webButton" data-tag="github" style="top:400px;left:calc(50% - 90px);" onclick="JumpToWeb(this)" >GitHub</button>
+            <button id="cloudButton" class="webButton" data-tag="cloudMusic" style="top:400px;left:calc(50% + 20px);" onclick="JumpToWeb(this)" >云音乐</button>
+            <button id="copilotButton" class="webButton" data-tag="copilot" style="top:400px;left:calc(50% + 130px);" onclick="JumpToWeb(this)" >Copilot</button>
+            <button id="viewMyGithubButton" class="githubButton"  onclick=JumpToMyGithub()>浏览我的Github</button>
+        </div>
+        <p class="timeLable"></p>
+    </div>
+</body>
+

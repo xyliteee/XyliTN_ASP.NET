@@ -1,0 +1,157 @@
+﻿.SearchButton {
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    background: rgba(26, 31, 25, 0.5);
+    background-size: 200% 200%;
+    animation: Gradient 10s ease infinite;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 40px;
+    top: 270px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: background 0.5s;
+}
+
+
+.SearchButton:hover {
+    background: rgba(26, 31, 25, 1);
+}
+
+.webButton {
+    position: absolute;
+    color: lightgray;
+    font-size: 16px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0,0.5);
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    transition: background 0.5s,opacity 0.5s
+}
+.webButton:hover {
+    background: rgba(0, 0, 0,0.8);
+}
+
+.githubButton {
+    position: absolute;
+    color: lightgray;
+    font-size: 16px;
+    border-radius: 5px;
+    background: rgba(0, 0, 0,0.5);
+    left: 50%;
+    top:700px;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    transition: background 0.5s;
+}
+.githubButton:hover {
+    background: rgba(0, 0, 0,0.8);
+}
+
+.engineButton {
+    transition: left 0.5s;
+    position: absolute;
+    left: calc(50% - 150px);
+    color: lightgray;
+    font-size: 14px;
+    top: 200px;
+    border-radius: 50px;
+    background: rgba(0, 0, 0,0.5);
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    border: none;
+    cursor: pointer;
+}
+
+.TimeLable {
+    position: absolute;
+    top: 100px;
+    color: rgba(255, 255, 255,0.7);
+    font-size: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    border:none;
+    background:none
+}
+
+.MainInputBoxStyle {
+    background-color: rgba(0, 0, 0,0.5);
+    font-size: 16px;
+    color: lightgrey;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 50px;
+    top: 200px;
+    transition: width 0.5s,background-color 0.5s;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border: none;
+    backdrop-filter: blur(10px);
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+.background-image {
+    opacity: 50%;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center; 
+    position: absolute;
+    transition: transform 0.5s, filter 0.5s;
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+    
+}
+
+
+.background-mask {
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    height: 100vh; 
+    object-fit: cover; 
+    object-position: center; 
+    position: absolute;
+}
+
+.container {
+    position: relative;
+}
