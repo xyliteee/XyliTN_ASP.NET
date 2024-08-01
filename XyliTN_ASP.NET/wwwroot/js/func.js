@@ -1,4 +1,4 @@
-﻿
+﻿var isPC;
 function SearchClick() {
     var query = document.getElementById('inputBox').value;
     window.location.href = searchString + encodeURIComponent(query);
@@ -67,6 +67,10 @@ function processFocus()
     });
 }
 
+
+
+
+
 function CallEnter() {
     const inputBox = document.getElementById('inputBox');
     inputBox.addEventListener('keydown', (event) => {
@@ -75,15 +79,24 @@ function CallEnter() {
         }
     });
 }
-function main() {
-    window.onload = function () {
-        GetCurrentTime();
-        setInterval(GetCurrentTime, 1000);
-        processFocus();
-        LoadEngine();
-        CallEnter();
-    }
+
+function JudgeThDevice () {
+    fetch('/Index?handler=UserAgent')
+        .then(response => response.json())
+        .then(data => {
+            isPC = data.isPC;
+            console.log(isPC);
+        })
+        .catch(error => console.error('Error:', error));
 }
-main();
+window.onload = function () {
+    GetCurrentTime();
+    setInterval(GetCurrentTime, 1000);
+    processFocus();
+    LoadEngine();
+    CallEnter();
+    JudgeThDevice();
+}
+
 
 

@@ -4,7 +4,7 @@ function ZoomInPC() {
     document.querySelector(".MainInputBoxStyle").style.width = '800px';
     WebButtonShow(false);
     document.querySelector(".MainInputBoxStyle").style.backgroundColor = 'rgba(0, 0, 0,0.8)';
-    //document.getElementById("inputBox").placeholder = "";
+    document.getElementById("inputBox").placeholder = "";
     document.getElementById('bgImage').style.transform = 'scale(1.2)';
     document.getElementById('bgImage').style.filter = 'blur(5px)';
 }
@@ -80,21 +80,16 @@ function WebButtonShow(value){
     }, 200);
    
 }
+
 function ZoomIn() {
-    fetch('/Index?handler=UserAgent')
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            var isPC = data.isPC;
-            if (isPC) {
-                ZoomInPC();
-            } else {
-                ZoomInMobile();
-            }
-        })
-        .catch(error => console.error('Error:', error));
+    if (isPC) {
+        ZoomInPC();
+    } else {
+        ZoomInMobile();
+    }
 }
+
+
 
 
 
