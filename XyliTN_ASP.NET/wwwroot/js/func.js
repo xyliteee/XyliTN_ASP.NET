@@ -1,4 +1,5 @@
 ﻿var isPC;
+var isLogin = false;
 function SearchClick() {
     var query = document.getElementById('inputBox').value;
     window.location.href = searchString + encodeURIComponent(query);
@@ -67,10 +68,6 @@ function processFocus()
     });
 }
 
-
-
-
-
 function CallEnter() {
     const inputBox = document.getElementById('inputBox');
     inputBox.addEventListener('keydown', (event) => {
@@ -85,10 +82,73 @@ function JudgeThDevice () {
         .then(response => response.json())
         .then(data => {
             isPC = data.isPC;
-            console.log(isPC);
         })
         .catch(error => console.error('Error:', error));
 }
+
+function Login() {
+    var userNameBox = document.getElementById("UserNameBox");
+    var passwordBox = document.getElementById("PassWordBox");
+
+    var username = userNameBox.value;
+    var password = passwordBox.value;
+
+    fetch('/api/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: username, password: password })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('登录成功,但这没什么用处');
+                hideLoginBox();
+                UpdataUser(username[0])
+            } else {
+                alert('登录失败：' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function Register() {
+    var userNameBox = document.getElementById("UserNameBox");
+    var passwordBox = document.getElementById("PassWordBox");
+
+    var username = userNameBox.value;
+    var password = passwordBox.value;
+
+    if (!username || !password) {
+        alert("用户名和密码不能为空！");
+        return;
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/register", true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                alert("注册成功！");
+            } else {
+                alert("注册失败：" + response.message);
+            }
+        }
+    };
+    xhr.send(JSON.stringify({ username: username, password: password }));
+}
+
+function UpdataUser(name) {
+    isLogin = true;
+    var userNameBox = document.getElementById("UserButton");
+    userNameBox.innerText = name;
+}
+
 window.onload = function () {
     GetCurrentTime();
     setInterval(GetCurrentTime, 1000);

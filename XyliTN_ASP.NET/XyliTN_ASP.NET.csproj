@@ -10,4 +10,9 @@
     <_ContentIncludedByDefault Remove="wwwroot\images\favicon.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.7" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.8" />
+  </ItemGroup>
+
 </Project>

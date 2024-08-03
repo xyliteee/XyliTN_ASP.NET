@@ -91,6 +91,39 @@ function ZoomIn() {
 
 
 
+function showLoginBox() {
+    var box = document.getElementById("LoginBox");
+    var overlay = document.getElementById("Overlay");
+
+    overlay.style.display = "block";
+    setTimeout(function () {
+        overlay.classList.add("show");
+        box.style.transform = "translate(-50%, 140%) scale(1.02)";
+        setTimeout(function () {
+            box.style.transform = "translate(-50%, 140%) scale(1)";
+        }, 300);
+    }, 10); 
+}
+
+function hideLoginBox() {
+    var box = document.getElementById("LoginBox");
+    var overlay = document.getElementById("Overlay");
+
+    box.style.transform = "translate(-50%, 140%) scale(1.02)";
+    setTimeout(function () {
+        box.style.transform = "translate(-50%, 140%) scale(0)";
+        overlay.classList.remove("show");
+        setTimeout(function () {
+            overlay.style.display = "none";
+        }, 300); 
+    }, 300);
+}
+
+
+
+
+
+
 
 
 

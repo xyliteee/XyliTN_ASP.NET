@@ -12,11 +12,11 @@
 <script src="~/js/func.js"></script>
 <title>戊五醇的首页</title>
 <body style="overflow: hidden;">
-    <div style="position: relative;">
+    <div id="BaseBox" style="position: relative;">
         <div class="background-mask"></div>
         <img id="bgImage" src="~/images/back.jpg" onclick="return false" class="background-image"></>
-        <button id="searchButton" class="SearchButton" onclick="SearchClick()">搜索</button>
-        <div style="position: relative;">
+        <div id="MainContent" style="position: relative;">
+            <button id="searchButton" class="SearchButton" onclick="SearchClick()">搜索</button>
             <input id="inputBox" type="text" placeholder="ヾ(≧▽≦*)o" class="MainInputBoxStyle" onfocus="ZoomIn()" onblur="ZoomOut()">
             <button id="engineButton" class="engineButton" onclick="ChoseEngine()"></button>
             <button id="bilibiliButton" class="webButton" data-tag="bilibili" style="top:400px;left:calc(50% - 200px);" onclick="JumpToWeb(this)" >哔哩</button>
@@ -24,6 +24,16 @@
             <button id="cloudButton" class="webButton" data-tag="cloudMusic" style="top:400px;left:calc(50% + 20px);" onclick="JumpToWeb(this)" >云音乐</button>
             <button id="copilotButton" class="webButton" data-tag="copilot" style="top:400px;left:calc(50% + 130px);" onclick="JumpToWeb(this)" >Copilot</button>
             <button id="viewMyGithubButton" class="githubButton"  onclick=JumpToMyGithub()>浏览我的Github</button>
+            <button id="UserButton" class="UserButton" onclick="showLoginBox()">登录</button>
+        </div>
+        <div id="Overlay" class="overlay"></div>
+        <div id="LoginBox" class="loginBox">
+            <p class="LoginTitle">登陆账号</p>
+            <input id="UserNameBox" placeholder = "UserName" class="LoginInput" style="top:60px"></input>
+            <input id="PassWordBox" placeholder = "PassWord" class="LoginInput" style="top:110px"></input>
+            <button id="LoginButton" class="LoginButton" onclick="Login()" style="width:120;height:40px;left:50px;top:170px">登录</button>
+            <button id="RegisterButton" class="LoginButton" onclick="Register()" style="width:120;height:40px;right:50px;top:170px">注册</button>
+            <button id = "CancelButton" class="ShutdownButton" onclick="hideLoginBox()" style="height:32px;width:32px;right:0px;top:0px">×</button>
         </div>
         <p class="timeLable"></p>
     </div>
