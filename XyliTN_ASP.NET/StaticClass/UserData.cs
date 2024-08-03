@@ -5,12 +5,11 @@ namespace XyliTN_ASP.NET.StaticClass
 {
     public static class UserData
     {
-        private const string connectionString = "Data Source=D://userdata.db";
+        
+        private const string connectionString = "Data Source=D://Mix//userdata.db";
         public static void CreateDatabase()
         {
             Batteries.Init();
-            
-
             using SqliteConnection connection = new(connectionString);
             connection.Open();
 

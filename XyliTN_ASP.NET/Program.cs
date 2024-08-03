@@ -9,11 +9,10 @@ namespace XyliTN_ASP.NET
         public static void DataInit() 
         {
             UserData.CreateDatabase();
-            UserData.InsertUser("xyliteee", "xylitol1128");
-
         }
         public static void Main(string[] args)
         {
+            DataInit();
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddRazorPages();
             builder.Services.AddControllers();
