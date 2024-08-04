@@ -13,8 +13,9 @@
 <title>戊五醇的首页</title>
 <body style="overflow: hidden;">
     <div id="BaseBox" style="position: relative;">
+        <input type="file" id="fileInput" style="display: none;" accept="image/*">
         <div class="background-mask"></div>
-        <img id="bgImage" src="~/images/back.jpg" onclick="return false" class="background-image"></>
+        <img id="bgImage" onclick="return false" class="background-image"></>
         <div id="MainContent" style="position: relative;">
             <button id="searchButton" class="SearchButton" onclick="SearchClick()">搜索</button>
             <input id="inputBox" type="text" placeholder="ヾ(≧▽≦*)o" class="MainInputBoxStyle" onfocus="ZoomIn()" onblur="ZoomOut()">
@@ -25,6 +26,14 @@
             <button id="copilotButton" class="webButton" data-tag="copilot" style="top:400px;left:calc(50% + 130px);" onclick="JumpToWeb(this)" >Copilot</button>
             <button id="viewMyGithubButton" class="githubButton"  onclick=JumpToMyGithub()>浏览我的Github</button>
             <button id="UserButton" class="UserButton" onclick="showLoginBox()">登录</button>
+            <button id="SettingButton" class="UserButton" style="right:120px" onclick="showSettingBox()">设置</button>
+            <div id="UserBox" class="UserBox">
+                <button id="LogoffButton" class="LogoffButton" onclick="Logoff()">退出登录</button>
+            </div>
+            <div id="SettingBox" style="right:120px" class="SettingBox">
+                <button id="SetBGButton" class="LogoffButton" onclick="SetBG()">设置壁纸</button>
+                <button id="ResetBGButton" class="LogoffButton" onclick="ResetBG()">恢复壁纸</button>
+            </div>
         </div>
         <div id="Overlay" class="overlay"></div>
         <div id="LoginBox" class="loginBox">

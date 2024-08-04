@@ -70,7 +70,7 @@
     font-size: 12px;
     border-radius: 40px;
     background: rgba(0, 0, 0,0.5);
-    right: 50px;
+    right: 20px;
     top: 50px;
     transform: translateX(-50%);
     width: 40px;
@@ -121,7 +121,7 @@
 .LoginBox {
     width: 400px;
     height: 220px;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     position: absolute;
     left: 50%;
@@ -205,7 +205,8 @@
     top: 200px;
     transition: width 0.5s,background-color 0.5s;
     border-radius: 50px;
-    text-align: center;
+    text-align: left;
+    padding:0 60px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     border: none;
     backdrop-filter: blur(10px);
@@ -263,3 +264,70 @@ body, html {
 .container {
     position: relative;
 }
+
+.UserBox {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    right: 20px;
+    top: 100px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 5px;
+    display: none; 
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    backdrop-filter: blur(10px);
+}
+
+    .UserBox.show {
+        display: block;
+        opacity: 1;
+    }
+
+    .UserBox.hide {
+        opacity: 0;
+    }
+
+
+
+.SettingBox {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    right: 120px;
+    top: 100px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 5px;
+    display: none;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    backdrop-filter: blur(10px);
+}
+
+    .SettingBox.show {
+        display: block;
+        opacity: 1;
+    }
+
+    .SettingBox.hide {
+        opacity: 0;
+    }
+
+
+.LogoffButton {
+    position: relative;
+    color: lightgrey;
+    font-size: 12px;
+    border: none;
+    width: 80px;
+    height: 40px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0);
+}
+    .LogoffButton:hover {
+        color: white;
+    }
+
+

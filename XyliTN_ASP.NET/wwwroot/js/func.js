@@ -106,6 +106,8 @@ function Login() {
                 alert('登录成功,但这没什么用处');
                 hideLoginBox();
                 UpdataUser(username[0])
+                localStorage.setItem('username', username);
+                localStorage.setItem('isLoggedIn', 'true');
             } else {
                 alert('登录失败：' + data.message);
             }
@@ -114,7 +116,13 @@ function Login() {
             console.error('Error:', error);
         });
 }
-
+function checkLoginStatus() {
+    var isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn === 'true') {
+        var username = localStorage.getItem('username');
+        UpdataUser(username[0]);
+    }
+}
 function Register() {
     var userNameBox = document.getElementById("UserNameBox");
     var passwordBox = document.getElementById("PassWordBox");
@@ -143,12 +151,64 @@ function Register() {
     xhr.send(JSON.stringify({ username: usernameStr, password: passwordStr }));
 }
 
-function UpdataUser(name) {
-    isLogin = true;
+function Logoff()
+{
+    localStorage.setItem('isLoggedIn', 'false');
     var userNameBox = document.getElementById("UserButton");
+    isLogin = false;
+    userNameBox.innerText = "登录";
+    var userBox = document.getElementById("UserBox");
+    userBox.classList.remove("show");
+    userBox.classList.add("hide");
+    setTimeout(function () {
+        userBox.style.display = "none";
+    }, 300);
+    alert("已注销");
+}
+function UpdataUser(name) {
+    var userNameBox = document.getElementById("UserButton");
+    isLogin = true;
     userNameBox.innerText = name;
 }
 
+function SetBG() {
+    var fileInput = document.getElementById("fileInput");
+    fileInput.click();
+    fileInput.onchange = function () {
+        var file = fileInput.files[0];
+        if (file) {
+            if (file.type.startsWith('image/')) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var bgImage = document.getElementById("bgImage");
+                    bgImage.src = e.target.result;
+                    localStorage.setItem('bgImage', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert("请选择一个有效的图片文件！");
+            }
+        }
+    };
+}
+
+function LoadBG()
+{
+    var bgImage = document.getElementById("bgImage");
+    var savedImage = localStorage.getItem('bgImage');
+    if (savedImage) {
+        bgImage.src = savedImage;
+    } else
+    {
+        bgImage.src = "/images/back.jpg";
+    }
+}
+
+function ResetBG() {
+    localStorage.removeItem('bgImage');
+    var bgImage = document.getElementById("bgImage");
+    bgImage.src = "/images/back.jpg";
+}
 window.onload = function () {
     GetCurrentTime();
     setInterval(GetCurrentTime, 1000);
@@ -156,6 +216,8 @@ window.onload = function () {
     LoadEngine();
     CallEnter();
     JudgeThDevice();
+    checkLoginStatus();
+    LoadBG()
 }
 
 
