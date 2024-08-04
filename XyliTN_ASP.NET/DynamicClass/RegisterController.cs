@@ -18,7 +18,7 @@
             }
             else
             {
-                return BadRequest(new { success = false, message = "用户名已存在。" });
+                return Ok(new { success = false, message = "用户名已存在。" });
             }
         }
     }

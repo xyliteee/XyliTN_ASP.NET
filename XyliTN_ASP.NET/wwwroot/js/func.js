@@ -119,10 +119,10 @@ function Register() {
     var userNameBox = document.getElementById("UserNameBox");
     var passwordBox = document.getElementById("PassWordBox");
 
-    var username = userNameBox.value;
-    var password = passwordBox.value;
+    var usernameStr = userNameBox.value;
+    var passwordStr = passwordBox.value;
 
-    if (!username || !password) {
+    if (!usernameStr || !passwordStr) {
         alert("用户名和密码不能为空！");
         return;
     }
@@ -140,7 +140,7 @@ function Register() {
             }
         }
     };
-    xhr.send(JSON.stringify({ username: username, password: password }));
+    xhr.send(JSON.stringify({ username: usernameStr, password: passwordStr }));
 }
 
 function UpdataUser(name) {
