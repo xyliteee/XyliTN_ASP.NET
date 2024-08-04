@@ -177,6 +177,10 @@ function SetBG() {
     fileInput.onchange = function () {
         var file = fileInput.files[0];
         if (file) {
+            if (file.size > 4.9 * 1024 * 1024) { 
+                alert("文件大小不能超过 5MB！");
+                return;
+            }
             if (file.type.startsWith('image/')) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
@@ -191,6 +195,7 @@ function SetBG() {
         }
     };
 }
+
 
 function LoadBG()
 {
