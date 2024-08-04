@@ -89,7 +89,7 @@ function ZoomIn() {
     }
 }
 
-function showLoginMainContent() {
+function ShowLoginMainContent() {
     var box = document.getElementById("LoginBox");
     var overlay = document.getElementById("Overlay");
 
@@ -102,7 +102,7 @@ function showLoginMainContent() {
         }, 300);
     }, 10);
 }
-function hideLoginMainContent() {
+function HideLoginMainContent() {
     var box = document.getElementById("LoginBox");
     var overlay = document.getElementById("Overlay");
 
@@ -129,7 +129,7 @@ function HideUserBox() {
 function ShowUserBox() {
     if (!isLogin)
     {
-        showLoginMainContent();
+        ShowLoginMainContent();
         return;
     }
     var userBox = document.getElementById("UserBox");

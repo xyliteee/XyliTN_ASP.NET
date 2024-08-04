@@ -104,7 +104,7 @@ function Login() {
         .then(data => {
             if (data.success) {
                 alert('登录成功,但这没什么用处');
-                hideLoginBox();
+                HideLoginMainContent()
                 UpdataUser(username[0])
                 localStorage.setItem('username', username);
                 localStorage.setItem('isLoggedIn', 'true');
