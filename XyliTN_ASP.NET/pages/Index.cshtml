@@ -25,14 +25,14 @@
             <button id="cloudButton" class="webButton" data-tag="cloudMusic" style="top:400px;left:calc(50% + 20px);" onclick="JumpToWeb(this)" >云音乐</button>
             <button id="copilotButton" class="webButton" data-tag="copilot" style="top:400px;left:calc(50% + 130px);" onclick="JumpToWeb(this)" >Copilot</button>
             <button id="viewMyGithubButton" class="githubButton"  onclick=JumpToMyGithub()>浏览我的Github</button>
-            <button id="UserButton" class="UserButton" onclick="showLoginBox()">登录</button>
-            <button id="SettingButton" class="UserButton" style="right:120px" onclick="showSettingBox()">设置</button>
+            <button id="UserButton" class="UserButton" onclick="ShowUserBox()" onblur="HideUserBox()">登录</button>
+            <button id="SettingButton" class="SettingButton" onclick="ShowSettingBox()" onblur="HideSettingBox()">设置</button>
             <div id="UserBox" class="UserBox">
-                <button id="LogoffButton" class="LogoffButton" onclick="Logoff()">退出登录</button>
+                <button id="LogoffButton" class="smallFuncButton" onclick="Logoff()">退出登录</button>
             </div>
-            <div id="SettingBox" style="right:120px" class="SettingBox">
-                <button id="SetBGButton" class="LogoffButton" onclick="SetBG()">设置壁纸</button>
-                <button id="ResetBGButton" class="LogoffButton" onclick="ResetBG()">恢复壁纸</button>
+            <div id="SettingBox" class="SettingBox">
+                <button id="SetBGButton" class="smallFuncButton" onclick="SetBG()">设置壁纸</button>
+                <button id="ResetBGButton" class="smallFuncButton" onclick="ResetBG()">恢复壁纸</button>
             </div>
         </div>
         <div id="Overlay" class="overlay"></div>

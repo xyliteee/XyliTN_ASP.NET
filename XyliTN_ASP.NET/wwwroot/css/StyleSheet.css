@@ -89,6 +89,33 @@
         transform: translateX(-50%) scale(0.8);
     }
 
+.SettingButton {
+    position: absolute;
+    color: lightgray;
+    font-size: 12px;
+    border-radius: 40px;
+    background: rgba(0, 0, 0,0.5);
+    right: 80px;
+    top: 50px;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    transition: background 0.5s,transform 0.2s;
+}
+
+    .SettingButton:hover {
+        background: rgba(0, 0, 0,0.8);
+    }
+
+    .SettingButton:active {
+        transform: translateX(-50%) scale(0.8);
+    }
+
 .LoginButton {
     position: absolute;
     color: lightgray;
@@ -295,7 +322,7 @@ body, html {
     position: absolute;
     width: 80px;
     height: 80px;
-    right: 120px;
+    right: 80px;
     top: 100px;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
@@ -316,7 +343,7 @@ body, html {
     }
 
 
-.LogoffButton {
+.smallFuncButton {
     position: relative;
     color: lightgrey;
     font-size: 12px;
@@ -326,7 +353,7 @@ body, html {
     cursor: pointer;
     background: rgba(0, 0, 0, 0);
 }
-    .LogoffButton:hover {
+    .smallFuncButton:hover {
         color: white;
     }
 

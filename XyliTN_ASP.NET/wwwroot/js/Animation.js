@@ -89,40 +89,20 @@ function ZoomIn() {
     }
 }
 
-function showLoginBox() {
-    if (!isLogin)
-    {
-        var box = document.getElementById("LoginBox");
-        var overlay = document.getElementById("Overlay");
+function showLoginMainContent() {
+    var box = document.getElementById("LoginBox");
+    var overlay = document.getElementById("Overlay");
 
-        overlay.style.display = "block";
+    overlay.style.display = "block";
+    setTimeout(function () {
+        overlay.classList.add("show");
+        box.style.transform = "translate(-50%, 140%) scale(1.02)";
         setTimeout(function () {
-            overlay.classList.add("show");
-            box.style.transform = "translate(-50%, 140%) scale(1.02)";
-            setTimeout(function () {
-                box.style.transform = "translate(-50%, 140%) scale(1)";
-            }, 300);
-        }, 10);
-        return;
-    }
-    var userBox = document.getElementById("UserBox");
-    if (userBox.classList.contains("show")) {
-        userBox.classList.remove("show");
-        userBox.classList.add("hide");
-        setTimeout(function () {
-            userBox.style.display = "none";
-        }, 300); 
-    } else {
-        userBox.style.display = "block";
-        setTimeout(function () {
-            userBox.classList.remove("hide");
-            userBox.classList.add("show");
-        }, 10);
-    }
-    
+            box.style.transform = "translate(-50%, 140%) scale(1)";
+        }, 300);
+    }, 10);
 }
-
-function hideLoginBox() {
+function hideLoginMainContent() {
     var box = document.getElementById("LoginBox");
     var overlay = document.getElementById("Overlay");
 
@@ -132,25 +112,51 @@ function hideLoginBox() {
         overlay.classList.remove("show");
         setTimeout(function () {
             overlay.style.display = "none";
-        }, 300); 
+        }, 300);
     }, 300);
 }
 
-function showSettingBox() {
-    var settingBox = document.getElementById("SettingBox");
-    if (settingBox.classList.contains("show")) {
-        settingBox.classList.remove("show");
-        settingBox.classList.add("hide");
-        setTimeout(function () {
-            settingBox.style.display = "none";
-        }, 300);
-    } else {
-        settingBox.style.display = "block";
-        setTimeout(function () {
-            settingBox.classList.remove("hide");
-            settingBox.classList.add("show");
-        }, 10);
+function HideUserBox() {
+    var userBox = document.getElementById("UserBox");
+    userBox.classList.remove("show");
+    userBox.classList.add("hide");
+    setTimeout(function () {
+        userBox.style.display = "none";
+    }, 300);
+}
+
+
+function ShowUserBox() {
+    if (!isLogin)
+    {
+        showLoginMainContent();
+        return;
     }
+    var userBox = document.getElementById("UserBox");
+    userBox.style.display = "block";
+    setTimeout(function () {
+        userBox.classList.remove("hide");
+        userBox.classList.add("show");
+    }, 10);
+}
+
+
+function HideSettingBox() {
+    var settingBox = document.getElementById("SettingBox");
+    settingBox.classList.remove("show");
+    settingBox.classList.add("hide");
+    setTimeout(function () {
+        settingBox.style.display = "none";
+    }, 300);
+    
+}
+function ShowSettingBox() {
+    var settingBox = document.getElementById("SettingBox");
+    settingBox.style.display = "block";
+    setTimeout(function () {
+        settingBox.classList.remove("hide");
+        settingBox.classList.add("show");
+    }, 10);
 }
 
 
