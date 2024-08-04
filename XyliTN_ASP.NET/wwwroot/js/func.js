@@ -196,7 +196,6 @@ function LoadBG()
 {
     var bgImage = document.getElementById("bgImage");
     var savedImage = localStorage.getItem('bgImage');
-    console.log(savedImage);
     if (savedImage) {
         bgImage.src = savedImage;
     } else
