@@ -6,7 +6,7 @@ namespace XyliTN_ASP.NET.StaticClass
     public static class UserData
     {
         
-        private const string connectionString = "Data Source=D://Mix//userdata.db";
+        private const string connectionString = "Data Source=E://MixFiles//userdata.db";
         public static void CreateDatabase()
         {
             Batteries.Init();
