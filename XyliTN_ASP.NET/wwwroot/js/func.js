@@ -81,7 +81,7 @@ function JudgeThDevice () {
     fetch('/Index?handler=UserAgent')
         .then(response => response.json())
         .then(data => {
-            isPC = data.isPC;
+            isPC = data.isPC;    
         })
         .catch(error => console.error('Error:', error));
 }
@@ -222,7 +222,7 @@ window.onload = function () {
     CallEnter();
     JudgeThDevice();
     checkLoginStatus();
-    LoadBG()
+    LoadBG();
 }
 
 
