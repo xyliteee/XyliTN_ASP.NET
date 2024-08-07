@@ -1,5 +1,5 @@
 ﻿var isPC;
-var isLogin = false;
+var isLogin;
 function SearchClick() {
     var query = document.getElementById('inputBox').value;
     window.location.href = searchString + encodeURIComponent(query);
@@ -90,72 +90,121 @@ function Login() {
     var userNameBox = document.getElementById("UserNameBox");
     var passwordBox = document.getElementById("PassWordBox");
 
-    var username = userNameBox.value;
-    var password = passwordBox.value;
-
-    fetch('/api/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username: username, password: password })
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('登录成功,但这没什么用处');
-                HideLoginMainContent()
-                UpdataUser(username[0])
+    var username = userNameBox.value.toString();
+    var password = passwordBox.value.toString();
+    LoginContent(username, password)
+        .then(res => {
+            if (res) {
+                alert("登录成功！");
+                HideLoginMainContent();
                 localStorage.setItem('username', username);
-                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('password', password);
+                UpdataUser(username);
             } else {
-                alert('登录失败：' + data.message);
+                alert("用户名不存在或密码错误！");
             }
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error("登录出错：", error);
+        });  
+}
+
+function LoginContent(username, password) {
+    return new Promise((resolve, reject) => {
+        password = encryptedPassword(password);
+        fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: username, password: password })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.success) {
+                    isLogin = true;
+                    resolve(true);
+                } else {
+                    isLogin = false;
+                    resolve(false);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                reject(error);
+            });
+    });
+}
+
+
+function AutoLogin()
+{
+    var username = localStorage.getItem('username')
+    var password = localStorage.getItem('password')
+    LoginContent(username, password)
+        .then(res => {
+            if (res) {
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+                UpdataUser(username);
+            } else {
+                localStorage.removeItem('username');
+                localStorage.removeItem('password');
+            }
+        })
+        .catch(error => {
+            console.error("登录出错：", error);
         });
 }
-function checkLoginStatus() {
-    var isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'true') {
-        var username = localStorage.getItem('username');
-        UpdataUser(username[0]);
-    }
-}
+
 function Register() {
     var userNameBox = document.getElementById("UserNameBox");
     var passwordBox = document.getElementById("PassWordBox");
 
-    var usernameStr = userNameBox.value;
-    var passwordStr = passwordBox.value;
+    var usernameStr = userNameBox.value.toString();
+    var passwordStr = passwordBox.value.toString();
 
     if (!usernameStr || !passwordStr) {
         alert("用户名和密码不能为空！");
         return;
     }
+    if (!/^[A-Za-z][A-Za-z0-9]*$/.test(usernameStr)) {
+        alert("用户名必须以英文开头且不能包含特殊字符！");
+        return;
+    }
+    if (passwordStr.length <= 8 || /[^A-Za-z0-9\?\-\!]/.test(passwordStr)) {
+        alert("密码必须大于八位且不能包含特殊字符！");
+        return;
+    }
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/api/register", true);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            if (response.success) {
+    passwordStr = encryptedPassword(passwordStr);
+
+    fetch("/api/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json;charset=UTF-8"
+        },
+        body: JSON.stringify({ username: usernameStr, password: passwordStr })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
                 alert("注册成功！");
             } else {
-                alert("注册失败：" + response.message);
+                alert("注册失败：" + data.message);
             }
-        }
-    };
-    xhr.send(JSON.stringify({ username: usernameStr, password: passwordStr }));
+        })
+        .catch(error => {
+            console.error("网络请求错误：", error);
+        });
 }
+
 
 function Logoff()
 {
     localStorage.setItem('isLoggedIn', 'false');
     var userNameBox = document.getElementById("UserButton");
-    isLogin = false;
     userNameBox.innerText = "登录";
     var userBox = document.getElementById("UserBox");
     userBox.classList.remove("show");
@@ -167,7 +216,7 @@ function Logoff()
 }
 function UpdataUser(name) {
     var userNameBox = document.getElementById("UserButton");
-    isLogin = true;
+    name = name.slice(0, 4);
     userNameBox.innerText = name;
 }
 
@@ -221,8 +270,8 @@ window.onload = function () {
     LoadEngine();
     CallEnter();
     JudgeThDevice();
-    checkLoginStatus();
     LoadBG();
+    AutoLogin();
 }
 
 
