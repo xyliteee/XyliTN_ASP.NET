@@ -115,8 +115,9 @@ function HideLoginMainContent() {
         }, 300);
     }, 300);
 }
-
+var isUserBoxShow = false;
 function HideUserBox() {
+    isUserBoxShow = false;
     var userBox = document.getElementById("UserBox");
     userBox.classList.remove("show");
     userBox.classList.add("hide");
@@ -132,16 +133,22 @@ function ShowUserBox() {
         ShowLoginMainContent();
         return;
     }
-    var userBox = document.getElementById("UserBox");
-    userBox.style.display = "block";
-    setTimeout(function () {
-        userBox.classList.remove("hide");
-        userBox.classList.add("show");
-    }, 10);
+    if (!isUserBoxShow) {
+        isUserBoxShow = true;
+        var userBox = document.getElementById("UserBox");
+        userBox.style.display = "block";
+        setTimeout(function () {
+            userBox.classList.remove("hide");
+            userBox.classList.add("show");
+        }, 10);
+        return;
+    }
+    HideUserBox();
 }
 
-
+var isSettingBoxShow = false;
 function HideSettingBox() {
+    isSettingBoxShow = false;
     var settingBox = document.getElementById("SettingBox");
     settingBox.classList.remove("show");
     settingBox.classList.add("hide");
@@ -151,12 +158,17 @@ function HideSettingBox() {
     
 }
 function ShowSettingBox() {
-    var settingBox = document.getElementById("SettingBox");
-    settingBox.style.display = "block";
-    setTimeout(function () {
-        settingBox.classList.remove("hide");
-        settingBox.classList.add("show");
-    }, 10);
+    if (!isSettingBoxShow) {
+        isSettingBoxShow = true;
+        var settingBox = document.getElementById("SettingBox");
+        settingBox.style.display = "block";
+        setTimeout(function () {
+            settingBox.classList.remove("hide");
+            settingBox.classList.add("show");
+        }, 10);
+        return;
+    }
+    HideSettingBox();
 }
 
 

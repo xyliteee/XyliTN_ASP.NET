@@ -112,6 +112,7 @@ function Login() {
 function LoginContent(username, password) {
     return new Promise((resolve, reject) => {
         password = encryptedPassword(password);
+        console.log(password);
         fetch('/api/login', {
             method: 'POST',
             headers: {
@@ -124,6 +125,7 @@ function LoginContent(username, password) {
                 console.log(data);
                 if (data.success) {
                     isLogin = true;
+                    localStorage.setItem('isAutoLogin', 'true');
                     resolve(true);
                 } else {
                     isLogin = false;
@@ -138,10 +140,18 @@ function LoginContent(username, password) {
 }
 
 
-function AutoLogin()
-{
-    var username = localStorage.getItem('username')
-    var password = localStorage.getItem('password')
+function AutoLogin() {
+    var isAuto = localStorage.getItem('isAutoLogin');
+    if (isAuto != 'true') {
+        return;
+    }
+    var username = localStorage.getItem('username');
+    var password = localStorage.getItem('password');
+
+    if (!username || !password) {
+        return;
+    }
+
     LoginContent(username, password)
         .then(res => {
             if (res) {
@@ -157,6 +167,7 @@ function AutoLogin()
             console.error("登录出错：", error);
         });
 }
+
 
 function Register() {
     var userNameBox = document.getElementById("UserNameBox");
@@ -179,6 +190,7 @@ function Register() {
     }
 
     passwordStr = encryptedPassword(passwordStr);
+    console.log(passwordStr);
 
     fetch("/api/register", {
         method: "POST",
@@ -203,7 +215,8 @@ function Register() {
 
 function Logoff()
 {
-    localStorage.setItem('isLoggedIn', 'false');
+    isLogin = false;
+    localStorage.setItem('isAutoLogin', 'false');
     var userNameBox = document.getElementById("UserButton");
     userNameBox.innerText = "登录";
     var userBox = document.getElementById("UserBox");
