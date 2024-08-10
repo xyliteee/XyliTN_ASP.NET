@@ -224,10 +224,19 @@
     top: 900px;
     color: rgba(255, 255, 255,1);
     font-size: 12px;
-    left: 50%;
+    left: 44%;
     transform: translateX(-50%);
     border: none;
     background: none;
+}
+
+.BALogo {
+    position: absolute;
+    top: 900px;
+    left: 50.8%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
 }
 
 .MainInputBoxStyle {
