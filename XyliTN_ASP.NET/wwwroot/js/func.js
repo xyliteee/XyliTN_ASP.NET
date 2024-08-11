@@ -10,12 +10,11 @@ function JumpToMyGithub(){
 }
 
 function JumpToWeb(button) {
-    var prefix = "https://"
     var tag = button.dataset.tag;
-    if (tag == "bilibili") { window.location.href = prefix + "www.bilibili.com"; }
-    if (tag == "github") { window.location.href = prefix + "www.github.com"; }
-    if (tag == "cloudMusic") { window.location.href = prefix + "music.163.com"; }
-    if (tag == "copilot") { window.location.href = prefix + "www.bing.com/chat?q=Microsoft+Copilot"; }
+    if (tag == "bilibili") { window.location.href = "https://www.bilibili.com"; }
+    if (tag == "github") { window.location.href = "https://www.github.com"; }
+    if (tag == "cloudMusic") { window.location.href = "https://music.163.com"; }
+    if (tag == "copilot") { window.location.href = "https://www.bing.com/chat?q=Microsoft+Copilot"; }
 }
 
 var searchEngines = [
