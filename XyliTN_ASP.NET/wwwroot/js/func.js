@@ -60,10 +60,10 @@ function LoadEngine() {
 function processFocus()
 {
     document.getElementById("engineButton").addEventListener("mousedown", function (event) {
-        event.preventDefault();//阻止更换搜索引擎的按钮获取焦点
+        event.preventDefault();
     });
     document.getElementById("searchButton").addEventListener("mousedown", function (event) {
-        event.preventDefault();//阻止搜索按钮获取焦点
+        event.preventDefault();
     });
 }
 
