@@ -15,9 +15,8 @@ namespace XyliTN_ASP.NET.StaticClass
 
             string createTableCommand = @"
                     CREATE TABLE IF NOT EXISTS Users (
-                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        Username TEXT NOT NULL,
-                        Password TEXT NOT NULL
+                        Username,
+                        Password
                     );";
 
             using SqliteCommand command = new(createTableCommand, connection);
