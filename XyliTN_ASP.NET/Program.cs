@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using XyliTN_ASP.NET.StaticClass;
 
@@ -8,7 +9,7 @@ namespace XyliTN_ASP.NET
     {
         public static void DataInit() 
         {
-            UserData.CreateDatabase();
+            
         }
         public static void Main(string[] args)
         {

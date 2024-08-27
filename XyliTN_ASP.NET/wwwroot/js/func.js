@@ -111,7 +111,6 @@ function Login() {
 function LoginContent(username, password) {
     return new Promise((resolve, reject) => {
         password = encryptedPassword(password);
-        console.log(password);
         fetch('/api/login', {
             method: 'POST',
             headers: {
@@ -119,7 +118,11 @@ function LoginContent(username, password) {
             },
             body: JSON.stringify({ username: username, password: password })
         })
-            .then(response => response.json())
+            .then(response => {
+                console.log(response);
+                return response.json();
+            })
+
             .then(data => {
                 console.log(data);
                 if (data.success) {

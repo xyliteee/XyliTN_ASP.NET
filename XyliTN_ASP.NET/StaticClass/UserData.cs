@@ -1,55 +1,48 @@
-﻿using Microsoft.Data.Sqlite;
-using SQLitePCL;
+﻿using MySql.Data.MySqlClient;
 
 namespace XyliTN_ASP.NET.StaticClass
 {
-    public static class UserData
+    public class UserData
     {
-        
-        private const string connectionString = "Data Source=E://MixFiles//userdata.db";
-        public static void CreateDatabase()
+        private readonly MySqlConnection connection;
+        private static readonly UserData _userDataInstance = new();
+        public static UserData UserDataInstance
         {
-            Batteries.Init();
-            using SqliteConnection connection = new(connectionString);
-            connection.Open();
-
-            string createTableCommand = @"
-                    CREATE TABLE IF NOT EXISTS Users (
-                        Username,
-                        Password
-                    );";
-
-            using SqliteCommand command = new(createTableCommand, connection);
-            command.ExecuteNonQuery();
+            get => _userDataInstance;
         }
-        public static void InsertUser(string username, string password)
+        private UserData()
         {
-            
-            using var connection = new SqliteConnection(connectionString);
+            string passwordFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MySQLPassWord.txt");
+            string password = File.ReadAllText(passwordFilePath).Trim();
+            string connectionString = $"server=localhost;database=userdata;uid=root;pwd={password};";
+            connection = new MySqlConnection(connectionString);
             connection.Open();
-            string insertCommand = @"
-            INSERT INTO Users (Username, Password)
-            VALUES (@Username, @Password);";
-            using var command = new SqliteCommand(insertCommand, connection);
-            command.Parameters.AddWithValue("@Username", username);
-            command.Parameters.AddWithValue("@Password", password);
-            command.ExecuteNonQuery();
+        }
+        public void InsertUser(string username, string password)
+        {
+            string table = "basedata";
+            string countQuery = $"SELECT COUNT(*) FROM {table}";
+            MySqlCommand countCommand = new MySqlCommand(countQuery, connection);
+            int userCount = Convert.ToInt32(countCommand.ExecuteScalar());
+            int newId = userCount + 1;
+            string insertQuery = $"INSERT INTO {table} (id, username, password) VALUES (@id, @username, @password)";
+            MySqlCommand insertCommand = new(insertQuery, connection);
+            insertCommand.Parameters.AddWithValue("@id", newId);
+            insertCommand.Parameters.AddWithValue("@username", username);
+            insertCommand.Parameters.AddWithValue("@password", password);
+            insertCommand.ExecuteNonQuery();
         }
 
-        public static LoginResult JudgeUser(string username, string password)
+        public LoginResult JudgeUser(string username, string password)
         {
-            
-            using var connection = new SqliteConnection(connectionString);
-            connection.Open();
-            string queryCommand = @"
-            SELECT Password FROM Users
-            WHERE Username = @Username;";
-            using var command = new SqliteCommand(queryCommand, connection);
-            command.Parameters.AddWithValue("@Username", username);
-            using var reader = command.ExecuteReader();
+            string query = "SELECT password FROM basedata WHERE username = @username";
+            MySqlCommand command = new(query, connection);
+            command.Parameters.AddWithValue("@username", username);
+            MySqlDataReader reader = command.ExecuteReader();
             if (reader.Read())
             {
                 string storedPassword = reader.GetString(0);
+                reader.Close();
                 if (storedPassword == password)
                 {
                     return LoginResult.Success;
@@ -61,9 +54,11 @@ namespace XyliTN_ASP.NET.StaticClass
             }
             else
             {
+                reader.Close();
                 return LoginResult.NoUser;
             }
         }
+
 
         public enum LoginResult 
         {
