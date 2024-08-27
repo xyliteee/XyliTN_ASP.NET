@@ -6,7 +6,8 @@ function ZoomInPC() {
     document.querySelector(".MainInputBoxStyle").style.backgroundColor = 'rgba(0, 0, 0,0.8)';
     document.getElementById("inputBox").placeholder = "";
     document.getElementById('bgImage').style.transform = 'scale(1.2)';
-    document.getElementById('bgImage').style.filter = 'blur(5px)';
+    document.getElementById('bgImage').style.filter = 'blur(10px)';
+    document.getElementById('bgImage').style.opacity = '40%';
 }
 function ZoomInMobile() {
     document.querySelector(".engineButton").style.left = 'calc(50% - 200px)';
@@ -15,7 +16,8 @@ function ZoomInMobile() {
     document.querySelector(".MainInputBoxStyle").style.backgroundColor = 'rgba(0, 0, 0,0.8)';
     document.getElementById("inputBox").placeholder = "";
     document.getElementById('bgImage').style.transform = 'scale(1.2)';
-    document.getElementById('bgImage').style.filter = 'blur(5px)';
+    document.getElementById('bgImage').style.filter = 'blur(10px)';
+    document.getElementById('bgImage').style.opacity = '40%';
 }
 
 function ZoomOut() {
@@ -39,6 +41,7 @@ function ZoomOut() {
     document.getElementById("inputBox").placeholder = randomEmoticon;
     document.getElementById('bgImage').style.transform = 'scale(1)';
     document.getElementById('bgImage').style.filter = 'blur(0)';
+    document.getElementById('bgImage').style.opacity = '60%';
 }
 
 function WebButtonShow(value){
