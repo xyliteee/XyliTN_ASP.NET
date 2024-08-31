@@ -29,7 +29,7 @@ function ZoomOut() {
         "ヾ(≧▽≦*)o",
         "φ(*￣0￣)",
         "q(≧▽≦q)",
-        "ψ(｀∇´)ψ",
+        "ψ(｀∇´)ψ", 
         "（￣︶￣）↗",
         "*^____^*",
         "(～￣▽￣)～",
@@ -52,34 +52,41 @@ function WebButtonShow(value){
             document.getElementById("githubButton").style.opacity = 1;
             document.getElementById("cloudButton").style.opacity = 1;
             document.getElementById("copilotButton").style.opacity = 1;
+            document.getElementById("viewMyGithubButton").style.opacity = 1;
+
             document.getElementById("bilibiliButton").disabled = false;
             document.getElementById("githubButton").disabled = false;
             document.getElementById("cloudButton").disabled = false;
             document.getElementById("copilotButton").disabled = false;
+            document.getElementById("viewMyGithubButton").disabled = false;
 
             document.getElementById("bilibiliButton").style.cursor = "pointer";
             document.getElementById("githubButton").style.cursor = "pointer";
             document.getElementById("cloudButton").style.cursor = "pointer";
             document.getElementById("copilotButton").style.cursor = "pointer";
+            document.getElementById("viewMyGithubButton").style.cursor = "pointer";
         }, 200);
         return;
     }
     setTimeout(function() {
-    document.querySelector(".webButton").cursor = "pointer";
-    document.getElementById("bilibiliButton").style.opacity = 0;
-    document.getElementById("githubButton").style.opacity = 0;
-    document.getElementById("cloudButton").style.opacity = 0;
-    document.getElementById("copilotButton").style.opacity = 0;
+        document.querySelector(".webButton").cursor = "pointer";
+        document.getElementById("bilibiliButton").style.opacity = 0;
+        document.getElementById("githubButton").style.opacity = 0;
+        document.getElementById("cloudButton").style.opacity = 0;
+        document.getElementById("copilotButton").style.opacity = 0;
+        document.getElementById("viewMyGithubButton").style.opacity = 0;
 
-    document.getElementById("bilibiliButton").disabled = true;
-    document.getElementById("githubButton").disabled = true;
-    document.getElementById("cloudButton").disabled = true;
-    document.getElementById("copilotButton").disabled = true;
+        document.getElementById("bilibiliButton").disabled = true;
+        document.getElementById("githubButton").disabled = true;
+        document.getElementById("cloudButton").disabled = true;
+        document.getElementById("copilotButton").disabled = true;
+        document.getElementById("viewMyGithubButton").disabled = true;
 
-    document.getElementById("bilibiliButton").style.cursor = "default";
-    document.getElementById("githubButton").style.cursor = "default";
-    document.getElementById("cloudButton").style.cursor = "default";
-    document.getElementById("copilotButton").style.cursor = "default";
+        document.getElementById("bilibiliButton").style.cursor = "default";
+        document.getElementById("githubButton").style.cursor = "default";
+        document.getElementById("cloudButton").style.cursor = "default";
+        document.getElementById("copilotButton").style.cursor = "default";
+        document.getElementById("viewMyGithubButton").style.cursor = "default";
     }, 200);
    
 }

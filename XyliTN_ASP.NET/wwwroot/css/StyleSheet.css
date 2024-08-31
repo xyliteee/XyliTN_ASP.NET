@@ -50,7 +50,7 @@
     border-radius: 5px;
     background: rgba(0, 0, 0,0.5);
     left: 50%;
-    top:700px;
+    top: 700px;
     transform: translateX(-50%);
     width: 200px;
     height: 40px;
@@ -58,7 +58,7 @@
     cursor: pointer;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
-    transition: background 0.5s;
+    transition: background 0.5s,opacity 0.5s;
 }
     .githubButton:hover {
         background: rgba(0, 0, 0,0.8);
