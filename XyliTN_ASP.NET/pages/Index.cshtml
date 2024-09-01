@@ -25,7 +25,6 @@
             <button id="githubButton" class="webButton" data-tag="github" style="top:400px;left:calc(50% - 90px);" onclick="JumpToWeb(this)" >GitHub</button>
             <button id="cloudButton" class="webButton" data-tag="cloudMusic" style="top:400px;left:calc(50% + 20px);" onclick="JumpToWeb(this)" >云音乐</button>
             <button id="copilotButton" class="webButton" data-tag="copilot" style="top:400px;left:calc(50% + 130px);" onclick="JumpToWeb(this)" >Copilot</button>
-            <button id="viewMyGithubButton" class="githubButton"  onclick=JumpToMyGithub()>浏览我的Github</button>
             <button id="UserButton" class="UserButton" onclick="ShowUserBox()" onblur="HideUserBox()">登录</button>
             <button id="SettingButton" class="SettingButton" onclick="ShowSettingBox()" onblur="HideSettingBox()">设置</button>
             <div id="UserBox" class="UserBox">
@@ -34,6 +33,8 @@
             <div id="SettingBox" class="SettingBox">
                 <button id="SetBGButton" class="smallFuncButton" onclick="SetBG()">设置壁纸</button>
                 <button id="ResetBGButton" class="smallFuncButton" onclick="ResetBG()">恢复壁纸</button>
+                <button id="AboutButton" class="smallFuncButton" onclick="location.href='@Url.Page("/About")'">关于作者</button>
+
             </div>
         </div>
         <div id="Overlay" class="overlay"></div>

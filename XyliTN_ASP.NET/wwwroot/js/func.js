@@ -5,9 +5,7 @@ function SearchClick() {
     window.location.href = searchString + encodeURIComponent(query);
 };
 
-function JumpToMyGithub(){
-    window.location.href = "https://github.com/xyliteee"
-}
+
 
 function JumpToWeb(button) {
     var tag = button.dataset.tag;

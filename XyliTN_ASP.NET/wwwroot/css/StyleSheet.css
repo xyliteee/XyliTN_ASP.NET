@@ -340,7 +340,7 @@ body, html {
 .SettingBox {
     position: absolute;
     width: 80px;
-    height: 80px;
+    height: 120px;
     right: 80px;
     top: 100px;
     background-color: rgba(0, 0, 0, 0.5);
