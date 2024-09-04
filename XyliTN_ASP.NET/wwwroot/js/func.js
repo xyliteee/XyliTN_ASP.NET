@@ -109,7 +109,7 @@ function Login() {
 function LoginContent(username, password) {
     return new Promise((resolve, reject) => {
         password = encryptedPassword(password);
-        fetch('/api/login', {
+        fetch('/api/service/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -117,12 +117,11 @@ function LoginContent(username, password) {
             body: JSON.stringify({ username: username, password: password })
         })
             .then(response => {
-                console.log(response);
                 return response.json();
             })
 
             .then(data => {
-                console.log(data);
+                console.log(data.message)
                 if (data.success) {
                     isLogin = true;
                     localStorage.setItem('isAutoLogin', 'true');
@@ -192,7 +191,7 @@ function Register() {
     passwordStr = encryptedPassword(passwordStr);
     console.log(passwordStr);
 
-    fetch("/api/register", {
+    fetch("/api/service/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=UTF-8"

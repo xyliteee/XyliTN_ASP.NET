@@ -18,28 +18,29 @@ namespace XyliTN_ASP.NET.StaticClass
             connection = new MySqlConnection(connectionString);
             connection.Open();
         }
-        public void InsertUser(string username, string password)
+        public async Task InsertUserAsync(string username, string password)
         {
             string table = "basedata";
             string countQuery = $"SELECT COUNT(*) FROM {table}";
-            MySqlCommand countCommand = new MySqlCommand(countQuery, connection);
-            int userCount = Convert.ToInt32(countCommand.ExecuteScalar());
+            using MySqlCommand countCommand = new(countQuery, connection);
+            int userCount = Convert.ToInt32(await countCommand.ExecuteScalarAsync());
             int newId = userCount + 1;
             string insertQuery = $"INSERT INTO {table} (id, username, password) VALUES (@id, @username, @password)";
-            MySqlCommand insertCommand = new(insertQuery, connection);
+            using MySqlCommand insertCommand = new(insertQuery, connection);
             insertCommand.Parameters.AddWithValue("@id", newId);
             insertCommand.Parameters.AddWithValue("@username", username);
             insertCommand.Parameters.AddWithValue("@password", password);
-            insertCommand.ExecuteNonQuery();
+            await insertCommand.ExecuteNonQueryAsync();
         }
 
-        public LoginResult JudgeUser(string username, string password)
+
+        public async Task<LoginResult> JudgeUserAsync(string username, string password)
         {
             string query = "SELECT password FROM basedata WHERE username = @username";
-            MySqlCommand command = new(query, connection);
+            using MySqlCommand command = new(query, connection);
             command.Parameters.AddWithValue("@username", username);
-            MySqlDataReader reader = command.ExecuteReader();
-            if (reader.Read())
+            using MySqlDataReader reader = (MySqlDataReader)await command.ExecuteReaderAsync();
+            if (await reader.ReadAsync())
             {
                 string storedPassword = reader.GetString(0);
                 reader.Close();
@@ -58,6 +59,7 @@ namespace XyliTN_ASP.NET.StaticClass
                 return LoginResult.NoUser;
             }
         }
+
 
 
         public enum LoginResult 
