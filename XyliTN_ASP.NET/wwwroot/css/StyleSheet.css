@@ -220,12 +220,8 @@
     background:none
 }
 .BALable {
-    position: absolute;
-    top: 900px;
-    color: rgba(255, 255, 255,1);
+    color: rgba(255, 255, 255, 1);
     font-size: 12px;
-    left: 44%;
-    transform: translateX(-50%);
     border: none;
     background: none;
 }
@@ -296,7 +292,17 @@ body, html {
     transition: transform 0.5s, filter 0.5s, opacity 0.5s;
     -webkit-user-drag: none;
 }
-
+.footer {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 3px 10px;
+    font-size: 12px;
+    text-shadow: 0 0 20px rgba(0, 0, 0, .8);
+    white-space: nowrap;
+    animation: delayedFadeIn 1s;
+}
 
 .background-mask {
     background-color: rgb(0, 0, 0);
