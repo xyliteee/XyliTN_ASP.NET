@@ -54,7 +54,11 @@ namespace XyliTN_ASP.NET.DynamicClass
                 LogManager.LogWrite("注册请求错误", ex.ToString());
                 return StatusCode(500, new { success = false, message = "服务器内部错误" });
             }
-
         }
+
+        
+
+
+
     }
 }
